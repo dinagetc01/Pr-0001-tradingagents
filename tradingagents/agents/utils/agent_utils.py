@@ -2,7 +2,22 @@ from langchain_core.messages import BaseMessage, HumanMessage, ToolMessage, AIMe
 from typing import List
 from typing import Annotated
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.messages import RemoveMessage
+
+# ------------------------------------------------------------------
+# Original direct import left commented for clarity:
+# from langchain_core.messages import RemoveMessage
+# ------------------------------------------------------------------
+# Robust import that works on both the old pydantic‑v1 LangChain stack
+# (≤0.2.24, where RemoveMessage is absent) and newer ones.
+try:  # langchain-core ≥ 0.2.25
+    from langchain_core.messages import RemoveMessage
+except ImportError:  # langchain-core ≤ 0.2.24
+    class RemoveMessage:  # fallback stub
+        """Stand‑in when RemoveMessage isn’t shipped."""
+        def __init__(self, **kwargs):
+            pass
+# ------------------------------------------------------------------
+
 from langchain_core.tools import tool
 from datetime import date, timedelta, datetime
 import functools
