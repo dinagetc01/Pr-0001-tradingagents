@@ -1,0 +1,21 @@
+# ---- 1. nuke the bad env ----
+conda deactivate
+conda env remove -n tradingagents
+
+# ---- 2. rebuild with pinned, known-good versions ----
+conda create -n tradingagents python=3.11 -y
+conda activate tradingagents
+
+
+# fresh env
+conda create -n tradingagents python=3.11 -y
+conda activate tradingagents
+
+# fast installer (optional but recommended)
+pip install --upgrade uv
+
+# install pinned stack
+uv pip install -r requirements.txt       # or plain: pip install -r …
+
+# run the CLI
+python -m cli.main
