@@ -1,6 +1,8 @@
 # ---- 1. nuke the bad env ----
 conda deactivate
 conda env remove -n tradingagents
+conda remove -n tradingagents --all -y
+
 
 # ---- 2. rebuild with pinned, known-good versions ----
 conda create -n tradingagents python=3.11 -y

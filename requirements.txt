@@ -1,35 +1,25 @@
 #############################################################################
-#  TradingAgents – stable Windows / Python 3.11 environment
-#  --------------------------------------------------------
-#  • Sticks to langchain-core 0.2.x (pydantic-v1 line) so the original code
-#    and chromadb 0.4.24 keep working.
-#  • Adds the handful of helper wheels that were missing in the repo.
-#  • Optional LLM wrappers (Anthropic / Gemini) can be commented out if you
-#    don’t need them locally.
-#
-#  Install on a clean env:
-#      uv pip install -r requirements.txt
-#  or: pip install -r requirements.txt
+#  TradingAgents – Stable Windows / Python 3.11 stack  (pydantic-v1 line)
 #############################################################################
 
-########## core LangChain stack – pydantic-v1 line ##########
+# ----------  core LangChain stack ------------------------------------------
 pydantic==1.10.13
-#pydantic-settings>=2.1.0,<3
-pydantic-settings>=0.2.3,<2 # last line that still works with pydantic-v1
-langchain-core==0.2.28
-langchain==0.1.30
-langchain-openai==0.3.26
-langchain-community==0.0.27
+pydantic-settings>=0.2.3,<2
+langchain-core==0.1.53
+#langchain==0.1.29
+langchain==0.1.24        # last 0.1.x wheel on PyPI
+langchain-openai==0.1.14
+langchain-community==0.0.35
 langgraph==0.0.43          # flow engine used by TradingAgents
 
-########## optional LLM wrappers (leave if you want them) ###
-langchain-anthropic>=0.3.17,<0.4       # Claude
-langchain-google-genai>=2.1.6,<3       # Gemini / Imagen
+# ----------  optional LLM wrappers -----------------------------------------
+langchain-anthropic>=0.3.17,<0.4          # comment out if not needed
+langchain-google-genai>=2.1.6,<3
 
-########## vector DB / memory ################################
-chromadb==0.4.24                        # last release still on pydantic-v1
+# ----------  vector DB / memory --------------------------------------------
+chromadb==0.4.24            # last release still on pydantic-v1
 
-########## primary project deps ###########################################
+# ----------  main project deps ---------------------------------------------
 akshare>=1.17.18,<2
 backtrader>=1.9.78.123,<2
 chainlit>=2.6.0,<3
@@ -52,7 +42,7 @@ typing-extensions>=4.14.1,<5
 urllib3>=2.5.0,<3
 yfinance>=0.2.65,<1
 
-########## helper libs that LangChain / core expect ############
+# ----------  helper wheels LangChain expects --------------------------------
 tenacity>=8.5.0,<9
 tiktoken>=0.9.0,<0.10
 jsonpatch>=1.33,<2
